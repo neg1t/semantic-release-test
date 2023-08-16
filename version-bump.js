@@ -79,6 +79,9 @@ if (newVersion !== currentVersion) {
   // const pullCommand = "git pull --rebase origin";
   // execSync(pullCommand);
 
+  const status = execSync("git status");
+  console.log(status.toString());
+
   // Произведение git push
   setTimeout(() => {
     const pushCommand = "git push";
