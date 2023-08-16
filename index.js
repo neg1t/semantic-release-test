@@ -1,2 +1,2 @@
-const res = 3;
+const res = 123;
 console.log("123");
