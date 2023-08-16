@@ -79,7 +79,7 @@ if (newVersion !== currentVersion) {
   // const pullCommand = "git pull --rebase origin";
   // execSync(pullCommand);
 
-  execSync("git HEAD^");
+  execSync("git checkout HEAD^");
 
   const status = execSync("git status");
   console.log(status.toString());
