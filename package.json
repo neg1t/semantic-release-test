@@ -12,7 +12,9 @@
   "author": "neg1t",
   "license": "ISC",
   "dependencies": {
-    "moment": "^2.29.4",
-    "semantic-release": "^19.0.5"
+    "moment": "^2.29.4"
+  },
+  "devDependencies": {
+    "jsonfile": "^6.1.0"
   }
 }
