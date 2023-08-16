@@ -76,9 +76,6 @@ if (newVersion !== currentVersion) {
   const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
   execSync(commitCommand);
 
-  // const pullCommand = "git pull --rebase origin";
-  // execSync(pullCommand);
-
   const status = execSync("git status");
   console.log(status.toString());
 
@@ -93,4 +90,6 @@ if (newVersion !== currentVersion) {
   console.log("Версия не изменилась");
 }
 
+const pullCommand = "git pull origin master";
+execSync(pullCommand);
 console.log("Коммит и push выполнены");
