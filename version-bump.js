@@ -15,7 +15,7 @@ function updateVersion(type, version) {
     .split(".")
     .map((item, index) => (index === types[type] ? +item + 1 : item))
     .map((item, index) =>
-      types[type] !== 2 && index === types[type] - 1 ? 0 : item
+      types[type] !== 2 && index === types[type] + 1 ? 0 : item
     )
     .join(".");
 }
