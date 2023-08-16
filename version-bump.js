@@ -14,9 +14,15 @@ function updateVersion(type, version) {
   return version
     .split(".")
     .map((item, index) => (index === types[type] ? +item + 1 : item))
-    .map((item, index) =>
-      types[type] !== 2 && index === types[type] + 1 ? 0 : item
-    )
+    .map((item, index) => {
+      if (types[type] === 1 && index === 2) {
+        return 0;
+      }
+      if (types[type] === 0 && (index === 2 || index === 1)) {
+        return 0;
+      }
+      return item;
+    })
     .join(".");
 }
 
@@ -42,12 +48,17 @@ const options = {
 };
 const commits = gitlog(options);
 
+const parsedCommits = [];
 for (const commit of commits) {
   const isNewVersion = commit.subject.includes(KEY_WORD);
   if (isNewVersion) {
     console.log("Найден коммит с новой версией");
     break;
   }
+  parsedCommits.unshift(commit);
+}
+
+for (const commit of parsedCommits) {
   const commitType = commit.subject.split(":")[0].trim();
   if (commitTypes[commitType]) {
     newVersion = updateVersion(commitType, newVersion);
