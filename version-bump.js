@@ -1,6 +1,6 @@
 // const jsonfile = require("jsonfile");
 // const path = require("path");
-const { execSync } = require("child_process");
+// const execSync = require("child_process").execSync;
 // const gitlog = require("gitlog").default;
 
 // const packageJsonPath = path.join(__dirname, "package.json");
@@ -70,6 +70,8 @@ const { execSync } = require("child_process");
 // console.log("Коммит и push выполнены");
 
 // const pushCommand = "git push";
-// execSync(pushCommand);
+const { execSync } = require("child_process");
+
+execSync('git commit -am "qwe"');
 
 console.log("Коммит и push выполнены");
