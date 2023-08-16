@@ -32,7 +32,6 @@ const hasPackageJsonChanges = commits.some((commit) => {
   return commit.files.includes("package.json");
 });
 
-// Если были изменения, продолжаем процесс
 if (hasPackageJsonChanges) {
   // Определение, какой тип версии увеличивать
   let versionType = "patch"; // По умолчанию, увеличиваем патч-версию
