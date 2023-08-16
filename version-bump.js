@@ -73,5 +73,6 @@
 const { execSync } = require("child_process");
 
 execSync('git commit -am "qwe"');
+execSync("git push");
 
 console.log("Коммит и push выполнены");
