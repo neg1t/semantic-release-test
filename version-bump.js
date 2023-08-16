@@ -130,6 +130,10 @@ if (newVersion !== currentVersion) {
   const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
   execSync(commitCommand);
 
+  // Произведение git push
+  const pushCommand = "git push";
+  execSync(pushCommand);
+
   console.log(`Версия увеличена с ${currentVersion} до ${newVersion}`);
 } else {
   console.log("Версия не изменилась");
