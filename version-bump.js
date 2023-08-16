@@ -74,24 +74,32 @@ const { execSync } = require("child_process");
 
 // execSync(`git status`);
 
+// Определение типов изменений и соответствующих ключевых слов
+const commitTypes = {
+  fix: "patch", // Исправления - увеличиваем патч-версию
+  feat: "minor", // Новые функции - увеличиваем минор-версию
+  update: "major", // Изменения без разрыва - увеличиваем минор-версию
+  // Другие типы изменений, если необходимо
+};
+
 const options = {
   repo: __dirname,
   number: 100, // максимальное количество коммитов для анализа
   fields: ["hash", "subject"],
 };
+const commits = gitlog(options);
 
 for (const commit of commits) {
   const isNewVersion = commit.subject.includes("new version");
-  console.log(commit);
   if (isNewVersion) {
     console.log("Найден коммит с новой версией");
     // execSync(`git push`);
     // console.log("Push выполнен");
     return;
   }
+  console.log(commit);
 }
 
-const commits = gitlog(options);
 // console.log(commits);
 
 // execSync(`git push`);
