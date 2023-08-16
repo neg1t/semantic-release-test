@@ -1,2 +1,2 @@
 const res = 3;
-console.log("qwe");
+console.log("123");
