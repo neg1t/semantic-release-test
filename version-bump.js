@@ -69,7 +69,7 @@ const { execSync } = require("child_process");
 
 // console.log("Коммит и push выполнены");
 
-const pushCommand = "git push";
-execSync(pushCommand);
+// const pushCommand = "git push";
+// execSync(pushCommand);
 
 console.log("Коммит и push выполнены");
