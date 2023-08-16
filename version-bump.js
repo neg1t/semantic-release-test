@@ -88,7 +88,7 @@ if (newVersion !== currentVersion) {
   setTimeout(() => {
     const pushCommand = "git push";
     execSync(pushCommand);
-  }, 5000);
+  }, 1000);
 
   console.log(`Версия увеличена с ${currentVersion} до ${newVersion}`);
 } else {
