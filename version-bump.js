@@ -62,7 +62,7 @@ if (newVersion !== currentVersion) {
   const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
   execSync(commitCommand);
 
-  const pullCommand = "git pull";
+  const pullCommand = "git pull --rebase";
   execSync(pullCommand);
 
   // Произведение git push
