@@ -15,6 +15,7 @@
     "moment": "^2.29.4"
   },
   "devDependencies": {
+    "gitlog": "^4.0.8",
     "jsonfile": "^6.1.0"
   }
 }

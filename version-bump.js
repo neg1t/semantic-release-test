@@ -1,10 +1,12 @@
 const jsonfile = require("jsonfile");
 const path = require("path");
+const gitlog = require("gitlog").default;
 
 const packageJsonPath = path.join(__dirname, "package.json");
 
-// Загрузка package.json
+// Загрузка текущей версии из package.json
 const packageJson = jsonfile.readFileSync(packageJsonPath);
+const currentVersion = packageJson.version;
 
 // Определение типов изменений и соответствующих ключевых слов
 const commitTypes = {
@@ -14,24 +16,36 @@ const commitTypes = {
   // Другие типы изменений, если необходимо
 };
 
-// Здесь предполагается, что вы получаете тип изменения из аргументов скрипта или как-то иначе
+// Получение всех коммитов с момента последнего тега версии
+const options = {
+  repo: __dirname,
+  number: 100, // максимальное количество коммитов для анализа
+  fields: ["hash", "subject"],
+  since: `${currentVersion}`,
+};
 
-const commitMessage = "feat: добавлена возможность Y"; // Пример сообщения коммита
+const commits = gitlog(options);
 
-const commitType = commitMessage.split(":")[0].trim(); // Извлечение типа изменения из сообщения
+// Определение, какой тип версии увеличивать
+let versionType = "patch"; // По умолчанию, увеличиваем патч-версию
 
-if (commitTypes[commitType]) {
-  // Увеличение версии в соответствии с типом изменения
-  const versionParts = packageJson.version.split(".");
-  versionParts[commitTypes[commitType] === "patch" ? 2 : 1] = (
-    parseInt(versionParts[commitTypes[commitType] === "patch" ? 2 : 1], 10) + 1
-  ).toString();
-  packageJson.version = versionParts.join(".");
-
-  // Запись обновленной версии в package.json
-  jsonfile.writeFileSync(packageJsonPath, packageJson, { spaces: 2 });
-
-  console.log(`Версия увеличена до: ${packageJson.version}`);
-} else {
-  console.log(`Неизвестный тип изменения: ${commitType}`);
+for (const commit of commits) {
+  const commitType = commit.subject.split(":")[0].trim();
+  if (commitTypes[commitType]) {
+    versionType = commitTypes[commitType];
+    break; // Берем первый подходящий тип и выходим из цикла
+  }
 }
+
+// Увеличение версии в соответствии с определенным типом
+const versionParts = currentVersion.split(".");
+versionParts[versionType === "patch" ? 2 : 1] = (
+  parseInt(versionParts[versionType === "patch" ? 2 : 1], 10) + 1
+).toString();
+const newVersion = versionParts.join(".");
+
+// Обновление версии в package.json
+packageJson.version = newVersion;
+jsonfile.writeFileSync(packageJsonPath, packageJson, { spaces: 2 });
+
+console.log(`Версия увеличена с ${currentVersion} до ${newVersion}`);
