@@ -1,7 +1,7 @@
 // const jsonfile = require("jsonfile");
 // const path = require("path");
 // const execSync = require("child_process").execSync;
-// const gitlog = require("gitlog").default;
+const gitlog = require("gitlog").default;
 
 // const packageJsonPath = path.join(__dirname, "package.json");
 
@@ -72,7 +72,28 @@
 // const pushCommand = "git push";
 const { execSync } = require("child_process");
 
-execSync(`git commit -am "qwe"`);
-execSync(`git push`);
+// execSync(`git status`);
+
+const options = {
+  repo: __dirname,
+  number: 100, // максимальное количество коммитов для анализа
+  fields: ["hash", "subject"],
+};
+
+for (const commit of commits) {
+  const isNewVersion = commit.subject.includes("new version");
+  console.log(commit);
+  if (isNewVersion) {
+    console.log("Найден коммит с новой версией");
+    // execSync(`git push`);
+    // console.log("Push выполнен");
+    return;
+  }
+}
+
+const commits = gitlog(options);
+// console.log(commits);
+
+// execSync(`git push`);
 
 console.log("Коммит и push выполнены");
