@@ -1,2 +1,2 @@
 const res = 1;
-console.log("asd");
+console.log("asd123");
