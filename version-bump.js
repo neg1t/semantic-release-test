@@ -77,13 +77,13 @@ if (newVersion !== currentVersion) {
   execSync(commitCommand);
 
   // Произведение git push
-  const pushCommand = "git push";
-  execSync(pushCommand);
 
   console.log(`Версия увеличена с ${currentVersion} до ${newVersion}`);
 } else {
   console.log("Версия не изменилась");
 }
+const pushCommand = "git push";
+execSync(pushCommand);
 const pullCommand = "git pull --rebase origin";
 execSync(pullCommand);
 
