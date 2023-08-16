@@ -76,15 +76,18 @@ if (newVersion !== currentVersion) {
   const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
   execSync(commitCommand);
 
+  // const pullCommand = "git pull --rebase origin";
+  // execSync(pullCommand);
+
   // Произведение git push
+  setTimeout(() => {
+    const pushCommand = "git push";
+    execSync(pushCommand);
+  }, 5000);
 
   console.log(`Версия увеличена с ${currentVersion} до ${newVersion}`);
 } else {
   console.log("Версия не изменилась");
 }
-const pushCommand = "git push";
-execSync(pushCommand);
-const pullCommand = "git pull --rebase origin";
-execSync(pullCommand);
 
 console.log("Коммит и push выполнены");
