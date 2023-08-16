@@ -62,6 +62,9 @@ if (newVersion !== currentVersion) {
   const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
   execSync(commitCommand);
 
+  const pullCommand = "git pull";
+  execSync(pullCommand);
+
   // Произведение git push
   const pushCommand = "git push";
   execSync(pushCommand);
