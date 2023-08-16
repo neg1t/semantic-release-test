@@ -111,7 +111,7 @@ for (const commit of commits) {
   const isNewVersion = commit.subject.includes(KEY_WORD);
   if (isNewVersion) {
     console.log("Найден коммит с новой версией");
-    return;
+    break;
   }
   const commitType = commit.subject.split(":")[0].trim();
   if (commitTypes[commitType]) {
