@@ -3,3 +3,4 @@
 
 node version-bump.js
 
+git push
