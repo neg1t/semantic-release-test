@@ -76,13 +76,12 @@ if (newVersion !== currentVersion) {
   const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
   execSync(commitCommand);
 
-  execSync("git pull --rebase");
-  execSync("git merge master -m 'merge'");
   const status = execSync("git status");
   console.log(status.toString());
 
+  execSync("git merge master");
   // Произведение git push
-  const pushCommand = "git push origin master";
+  const pushCommand = "git push";
   execSync(pushCommand);
 
   console.log(`Версия увеличена с ${currentVersion} до ${newVersion}`);
