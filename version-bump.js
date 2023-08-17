@@ -76,6 +76,8 @@ if (newVersion !== currentVersion) {
   const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
   execSync(commitCommand);
 
+  execSync("git pull --rebase");
+  execSync("git merge master -m 'merge'");
   const status = execSync("git status");
   console.log(status.toString());
 
@@ -88,4 +90,3 @@ if (newVersion !== currentVersion) {
 } else {
   console.log("Версия не изменилась");
 }
-execSync("git diff --quiet");
