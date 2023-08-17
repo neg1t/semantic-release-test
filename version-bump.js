@@ -3,6 +3,10 @@ const path = require("path");
 const gitlog = require("gitlog").default;
 const { execSync } = require("child_process");
 
+const exec = (cmd) => {
+  execSync(cmd, { stdio: "inherit" });
+};
+
 const KEY_WORD = "new version";
 
 function updateVersion(type, version) {
@@ -73,8 +77,8 @@ if (newVersion !== currentVersion) {
   jsonfile.writeFileSync(packageJsonPath, packageJson, { spaces: 2 });
 
   // Создание коммита с обновленной версией
-  const commitCommand = `git commit -am -F "${KEY_WORD} ${newVersion}"`;
-  execSync(commitCommand);
+  const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
+  exec(commitCommand);
 
   const status = execSync("git status");
   console.log(status.toString());
