@@ -79,7 +79,9 @@ if (newVersion !== currentVersion) {
   const status = execSync("git status");
   console.log(status.toString());
 
-  execSync(`git pull origin master --rebase`);
+  execSync(`git rev-parse --symbolic-full-name master`);
+  execSync(`git rev-parse master`);
+  execSync(`git show-ref master`);
   // Произведение git push
   const pushCommand = "git push";
   execSync(pushCommand);
