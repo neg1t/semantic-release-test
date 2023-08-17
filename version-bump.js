@@ -71,6 +71,10 @@ if (newVersion !== currentVersion) {
   // Обновление версии в package.json
   packageJson.version = newVersion;
   jsonfile.writeFileSync(packageJsonPath, packageJson, { spaces: 2 });
+  execSync("git fetch origin");
+  const status = execSync("git status");
+  console.log(status.toString());
+  execSync("git pull origin master");
 
   // Создание коммита с обновленной версией
   execSync(`git add .`);
@@ -80,22 +84,9 @@ if (newVersion !== currentVersion) {
     execSync(commitCommand);
   }, 1000);
 
-  setTimeout(() => {
-    const pushCommand = "git fetch origin";
-    execSync(pushCommand);
-  }, 1000);
-  const status = execSync("git status");
-  console.log(status.toString());
-  setTimeout(() => {
-    const pushCommand = "git pull origin master";
-    execSync(pushCommand);
-  }, 1000);
-
   // Произведение git push
-  setTimeout(() => {
-    const pushCommand = "git push origin master";
-    execSync(pushCommand);
-  }, 1000);
+  const pushCommand = "git push origin master";
+  execSync(pushCommand);
 
   console.log(`Версия увеличена с ${currentVersion} до ${newVersion}`);
   console.log("Коммит и push выполнены");
