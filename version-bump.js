@@ -76,7 +76,7 @@ if (newVersion !== currentVersion) {
   packageJson.version = newVersion;
   jsonfile.writeFileSync(packageJsonPath, packageJson, { spaces: 2 });
 
-  exec("git diff --quiet main");
+  exec("git diff --quiet");
 
   // Создание коммита с обновленной версией
   const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
