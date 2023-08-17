@@ -78,7 +78,6 @@ if (newVersion !== currentVersion) {
   execSync(`git pull origin master --autostash --rebase -X ours`);
   // Создание коммита с обновленной версией
   const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
-  execSync(`NO_PAGER=1 git --no-pager diff HEAD^`);
 
   execSync(commitCommand);
   const status = execSync("git status");
