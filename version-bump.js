@@ -79,12 +79,8 @@ if (newVersion !== currentVersion) {
   const status = execSync("git status");
   console.log(status.toString());
 
-  execSync(`rm -fr ".git/rebase-merge"`);
-  // const pullCommand = "git fetch";
-  // execSync(pullCommand);
-
   // Произведение git push
-  const pushCommand = "git push";
+  const pushCommand = "git push origin master";
   execSync(pushCommand);
 
   console.log(`Версия увеличена с ${currentVersion} до ${newVersion}`);
