@@ -80,12 +80,20 @@ if (newVersion !== currentVersion) {
     execSync(commitCommand);
   }, 1000);
 
+  setTimeout(() => {
+    const pushCommand = "git fetch origin";
+    execSync(pushCommand);
+  }, 1000);
   const status = execSync("git status");
   console.log(status.toString());
+  setTimeout(() => {
+    const pushCommand = "git pull origin master";
+    execSync(pushCommand);
+  }, 1000);
 
   // Произведение git push
   setTimeout(() => {
-    const pushCommand = "git push";
+    const pushCommand = "git push origin master";
     execSync(pushCommand);
   }, 1000);
 
