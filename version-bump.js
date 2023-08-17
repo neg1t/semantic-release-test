@@ -72,9 +72,13 @@ if (newVersion !== currentVersion) {
   packageJson.version = newVersion;
   jsonfile.writeFileSync(packageJsonPath, packageJson, { spaces: 2 });
 
+  execSync(`git config --local core.autocrlf false`);
+  // execSync(`git config --local user.email "${{ github.actor }}@users.noreply.github.com"`);
   execSync(`git add . && git add --renormalize .`);
+  execSync(`git pull origin master --autostash --rebase -X ours`);
   // Создание коммита с обновленной версией
-  const commitCommand = `git commit -m "${KEY_WORD} ${newVersion}"`;
+  const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
+  execSync(`NO_PAGER=1 git --no-pager diff HEAD^`);
 
   execSync(commitCommand);
   const status = execSync("git status");
