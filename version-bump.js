@@ -90,6 +90,6 @@ if (newVersion !== currentVersion) {
   console.log("Версия не изменилась");
 }
 
-const pullCommand = "git pull origin master";
+const pullCommand = "git pull origin master --rebase";
 execSync(pullCommand);
 console.log("Коммит и push выполнены");
