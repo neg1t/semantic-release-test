@@ -73,7 +73,7 @@ if (newVersion !== currentVersion) {
   jsonfile.writeFileSync(packageJsonPath, packageJson, { spaces: 2 });
 
   // Создание коммита с обновленной версией
-  const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
+  const commitCommand = `git commit -am -F "${KEY_WORD} ${newVersion}"`;
   execSync(commitCommand);
 
   const status = execSync("git status");
