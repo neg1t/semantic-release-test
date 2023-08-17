@@ -80,8 +80,8 @@ if (newVersion !== currentVersion) {
   const commitCommand = `git commit --allow-empty -am "${KEY_WORD} ${newVersion}"`;
 
   execSync(commitCommand);
-  const status = execSync("git status");
-  console.log(status.toString());
+  // const status = execSync("git status");
+  console.log(commitCommand.toString());
 
   // execSync(`git rebase origin/master`);
   // Произведение git push
