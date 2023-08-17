@@ -71,10 +71,10 @@ if (newVersion !== currentVersion) {
   // Обновление версии в package.json
   packageJson.version = newVersion;
   jsonfile.writeFileSync(packageJsonPath, packageJson, { spaces: 2 });
-  execSync("git fetch origin");
-  const status = execSync("git status");
-  console.log(status.toString());
-  execSync("git pull origin master");
+  // execSync("git fetch origin");
+  // const status = execSync("git status");
+  // console.log(status.toString());
+  // execSync("git pull origin master");
 
   // Создание коммита с обновленной версией
   execSync(`git add .`);
