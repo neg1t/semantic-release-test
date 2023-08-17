@@ -79,6 +79,10 @@ if (newVersion !== currentVersion) {
   const status = execSync("git status");
   console.log(status.toString());
 
+  const pullCommand = "git pull origin master --rebase";
+  execSync(pullCommand);
+  console.log("Коммит и push выполнены");
+
   // Произведение git push
   setTimeout(() => {
     const pushCommand = "git push";
@@ -89,7 +93,3 @@ if (newVersion !== currentVersion) {
 } else {
   console.log("Версия не изменилась");
 }
-
-const pullCommand = "git pull origin master --rebase";
-execSync(pullCommand);
-console.log("Коммит и push выполнены");
