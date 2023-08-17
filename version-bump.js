@@ -77,7 +77,7 @@ if (newVersion !== currentVersion) {
   execSync(`git add . && git add --renormalize .`);
   execSync(`git pull origin master --autostash --rebase -X ours`);
   // Создание коммита с обновленной версией
-  const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
+  const commitCommand = `git commit --allow-empty -am "${KEY_WORD} ${newVersion}"`;
 
   execSync(commitCommand);
   const status = execSync("git status");
