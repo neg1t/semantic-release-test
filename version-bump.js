@@ -73,16 +73,21 @@ if (newVersion !== currentVersion) {
   jsonfile.writeFileSync(packageJsonPath, packageJson, { spaces: 2 });
 
   // Создание коммита с обновленной версией
-  const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
-  execSync(commitCommand);
+  execSync(`git add .`);
+
+  setTimeout(() => {
+    const commitCommand = `git commit -m "${KEY_WORD} ${newVersion}"`;
+    execSync(commitCommand);
+  }, 1000);
 
   const status = execSync("git status");
   console.log(status.toString());
 
-  execSync("git merge master");
   // Произведение git push
-  const pushCommand = "git push";
-  execSync(pushCommand);
+  setTimeout(() => {
+    const pushCommand = "git push";
+    execSync(pushCommand);
+  }, 1000);
 
   console.log(`Версия увеличена с ${currentVersion} до ${newVersion}`);
   console.log("Коммит и push выполнены");
