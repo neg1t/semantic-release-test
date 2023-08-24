@@ -52,7 +52,8 @@ const parsedCommits = [];
 for (const commit of commits) {
   const isNewVersion = commit.subject.includes(KEY_WORD);
   if (isNewVersion) {
-    console.log("Найден коммит с новой версией");
+    console.log("Найден коммит с последней версией");
+    console.log(commit);
     break;
   }
   parsedCommits.unshift(commit);
@@ -63,7 +64,7 @@ for (const commit of parsedCommits) {
   if (commitTypes[commitType]) {
     newVersion = updateVersion(commitType, newVersion);
   }
-  console.log(commit);
+  // console.log(commit);
 }
 
 // Если версия изменилась, то обновляем ее в package.json и создаем коммит
