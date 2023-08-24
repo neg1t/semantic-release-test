@@ -33,7 +33,7 @@ const packageJson = jsonfile.readFileSync(packageJsonPath);
 const currentVersion = packageJson.version;
 let newVersion = currentVersion;
 
-// Определение типов изменений и соответствующих ключевых слов
+// Определение типов изменений и соответствующих ключевых словasd
 const commitTypes = {
   fix: "patch", // Исправления - увеличиваем патч-версию
   feat: "minor", // Новые функции - увеличиваем минор-версию
