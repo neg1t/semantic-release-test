@@ -86,6 +86,12 @@ if (newVersion !== currentVersion) {
 
   const pullCommand = "git pull origin master --autostash --rebase -X ours";
   execSync(pullCommand);
+  const asd = "git fetch origin";
+  execSync(asd);
+  console.log("asd", asd);
+  const qwe = "git branch -vv";
+  execSync(qwe);
+  console.log("qwe", qwe);
 
   // execSync(`git rebase origin/master`);
   // Произведение git push
