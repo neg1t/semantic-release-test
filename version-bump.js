@@ -86,17 +86,16 @@ if (newVersion !== currentVersion) {
 
   const pullCommand = "git pull origin master --autostash --rebase -X ours";
   execSync(pullCommand);
-  const asd = "git fetch origin";
-  execSync(asd);
-  console.log("asd", asd.toString());
-  const qwe = "git branch -vv";
-  execSync(qwe);
-  console.log("qwe", qwe.toString());
+
+  execSync("git checkout master");
+  execSync("git fetch");
+  execSync("git rebase origin/master");
+  execSync("git push origin master:master");
 
   // execSync(`git rebase origin/master`);
   // Произведение git push
   const pushCommand = "git push --no-verify";
-  execSync(pushCommand);
+  // execSync(pushCommand);
 
   console.log(`Версия увеличена с ${currentVersion} до ${newVersion}`);
   console.log("Коммит и push выполнены");
