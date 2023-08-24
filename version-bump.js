@@ -84,6 +84,9 @@ if (newVersion !== currentVersion) {
   // const status = execSync("git status");
   console.log(commitCommand.toString());
 
+  const pullCommand = "git pull origin master --autostash --rebase -X ours";
+  execSync(pullCommand);
+
   // execSync(`git rebase origin/master`);
   // Произведение git push
   const pushCommand = "git push --no-verify";
