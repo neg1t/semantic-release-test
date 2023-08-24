@@ -13,7 +13,7 @@
   ],
   "husky": {
     "hooks": {
-      "post-push": "npm run post-push"
+      "post-push": "yarn post-push"
     }
   },
   "author": "neg1t",
