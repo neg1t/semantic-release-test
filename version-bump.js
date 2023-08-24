@@ -87,9 +87,9 @@ if (newVersion !== currentVersion) {
   const pullCommand = "git pull origin master --autostash --rebase -X ours";
   execSync(pullCommand);
 
-  execSync("git checkout master");
-  execSync("git fetch");
-  execSync("git rebase origin/master");
+  // execSync("git checkout master");
+  // execSync("git fetch");
+  execSync("rm -fr '.git/rebase-merge'");
   execSync("git push origin master:master");
 
   // execSync(`git rebase origin/master`);
