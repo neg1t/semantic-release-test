@@ -90,7 +90,7 @@ if (newVersion !== currentVersion) {
   // execSync("git checkout master");
   // execSync("git fetch");
   // execSync("rm -fr '.git/rebase-merge'");
-  execSync("git pull origin master --rebase");
+  // execSync("git pull origin master --rebase");
 
   // execSync(`git rebase origin/master`);
   // Произведение git push
