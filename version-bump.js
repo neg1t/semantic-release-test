@@ -88,10 +88,10 @@ if (newVersion !== currentVersion) {
   execSync(pullCommand);
   const asd = "git fetch origin";
   execSync(asd);
-  console.log("asd", asd);
+  console.log("asd", asd.toString());
   const qwe = "git branch -vv";
   execSync(qwe);
-  console.log("qwe", qwe);
+  console.log("qwe", qwe.toString());
 
   // execSync(`git rebase origin/master`);
   // Произведение git push
