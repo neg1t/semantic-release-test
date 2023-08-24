@@ -68,7 +68,7 @@ for (const commit of parsedCommits) {
 
 // Если версия изменилась, то обновляем ее в package.json и создаем коммит
 if (newVersion !== currentVersion) {
-  // Обновление версии в package.json asdasd
+  // Обновление версии в package.json asdasdasd
   packageJson.version = newVersion;
   jsonfile.writeFileSync(packageJsonPath, packageJson, { spaces: 2 });
 
