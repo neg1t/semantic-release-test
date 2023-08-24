@@ -86,7 +86,7 @@ if (newVersion !== currentVersion) {
   // execSync(`git rebase origin/master`);
   // Произведение git push
   const pushCommand = "git push --no-verify";
-  execSync(pushCommand);
+  // execSync(pushCommand);
 
   console.log(`Версия увеличена с ${currentVersion} до ${newVersion}`);
   console.log("Коммит и push выполнены");
