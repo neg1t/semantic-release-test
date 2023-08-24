@@ -33,7 +33,7 @@ const packageJson = jsonfile.readFileSync(packageJsonPath);
 const currentVersion = packageJson.version;
 let newVersion = currentVersion;
 
-// Определение типов изменений и соответствующих ключевых словasdasdasd
+// Определение типов изменений и соответствующих ключевых слов
 const commitTypes = {
   fix: "patch", // Исправления - увеличиваем патч-версию
   feat: "minor", // Новые функции - увеличиваем минор-версию
@@ -68,7 +68,7 @@ for (const commit of parsedCommits) {
 
 // Если версия изменилась, то обновляем ее в package.json и создаем коммит
 if (newVersion !== currentVersion) {
-  // Обновление версии в package.json asdfasdasdasd
+  // Обновление версии в package.json asdfasdasd
   packageJson.version = newVersion;
   jsonfile.writeFileSync(packageJsonPath, packageJson, { spaces: 2 });
 
