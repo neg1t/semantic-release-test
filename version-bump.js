@@ -77,7 +77,7 @@ if (newVersion !== currentVersion) {
   // execSync(`git add . && git add --renormalize .`);
   // execSync(`git pull origin master --autostash --rebase -X ours`);
   // Создание коммита с обновленной версией
-  const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
+  const commitCommand = `git commit -n -am "${KEY_WORD} ${newVersion}"`;
 
   execSync(commitCommand);
   // const status = execSync("git status");
@@ -86,7 +86,7 @@ if (newVersion !== currentVersion) {
   // execSync(`git rebase origin/master`);
   // Произведение git push
   const pushCommand = "git push --no-verify";
-  // execSync(pushCommand);
+  execSync(pushCommand);
 
   console.log(`Версия увеличена с ${currentVersion} до ${newVersion}`);
   console.log("Коммит и push выполнены");
