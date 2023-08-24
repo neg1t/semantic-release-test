@@ -5,11 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "post-push": "echo 'Push successful!'"
   },
   "keywords": [
     "semantic-release"
   ],
+  "husky": {
+    "hooks": {
+      "post-push": "npm run post-push"
+    }
+  },
   "author": "neg1t",
   "license": "ISC",
   "dependencies": {
