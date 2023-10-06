@@ -7,9 +7,17 @@ const KEY_WORD = "new version";
 
 function updateVersion(type, version) {
   const types = {
+    chore: 2,
+    build: 2,
+    ci: 2,
+    docs: 2,
     fix: 2,
+    perf: 2,
+    refactor: 2,
+    style: 2,
+    test: 2,
     feat: 1,
-    update: 0,
+    major: 0,
   };
   return version
     .split(".")
@@ -35,9 +43,17 @@ let newVersion = currentVersion;
 
 // Определение типов изменений и соответствующих ключевых слов
 const commitTypes = {
-  fix: "patch", // Исправления - увеличиваем патч-версию
-  feat: "minor", // Новые функции - увеличиваем минор-версию
-  update: "major", // Новая версия - увеличиваем минор-версию
+  chore: "patch", // related to maintenance tasks, build processes, or other non-user-facing changes
+  build: "patch", // Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+  ci: "patch", // Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+  docs: "patch", // Documentation only changes
+  fix: "patch", // A bug fix
+  perf: "patch", // A code change that improves performance
+  refactor: "patch", // A code change that neither fixes a bug nor adds a feature
+  style: "patch", // Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+  test: "patch", // Adding missing tests or correcting existing tests
+  feat: "minor", // A new feature
+  major: "major", // Новая версия - увеличиваем минор-версию
   // Другие типы изменений, если необходимо
 };
 
@@ -61,8 +77,11 @@ for (const commit of commits) {
 
 for (const commit of parsedCommits) {
   const commitType = commit.subject.split(":")[0].trim();
+  if (commitType.at(commitType.length - 1) === "!") {
+    newVersion = updateVersion("major", newVersion);
+  }
   if (commitTypes[commitType]) {
-    newVersion = updateVersion(commitType, newVersion);
+    newVersion = updateVersion(commitType.split("(")[0], newVersion);
   }
   // console.log(commit);
 }
@@ -82,10 +101,10 @@ if (newVersion !== currentVersion) {
 
   execSync(commitCommand);
   // const status = execSync("git status");
-  console.log(commitCommand.toString());
+  // console.log(commitCommand.toString());
 
-  const pullCommand = "git pull origin master --autostash --rebase -X ours";
-  execSync(pullCommand);
+  // const pullCommand = "git pull origin master --autostash --rebase -X ours";
+  // execSync(pullCommand);
 
   // execSync("git checkout master");
   // execSync("git fetch");
@@ -94,7 +113,7 @@ if (newVersion !== currentVersion) {
 
   // execSync(`git rebase origin/master`);
   // Произведение git push
-  const pushCommand = "git push --no-verify";
+  const pushCommand = "git push";
   execSync(pushCommand);
 
   console.log(`Версия увеличена с ${currentVersion} до ${newVersion}`);
