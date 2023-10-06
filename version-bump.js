@@ -80,7 +80,7 @@ for (const commit of parsedCommits) {
   if (commitType.at(commitType.length - 1) === "!") {
     newVersion = updateVersion("major", newVersion);
   }
-  if (commitTypes[commitType]) {
+  if (commitTypes[commitType.split("(")[0]]) {
     newVersion = updateVersion(commitType.split("(")[0], newVersion);
   }
   // console.log(commit);
