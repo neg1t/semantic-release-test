@@ -92,26 +92,10 @@ if (newVersion !== currentVersion) {
   packageJson.version = newVersion;
   jsonfile.writeFileSync(packageJsonPath, packageJson, { spaces: 2 });
 
-  // execSync(`git config --local core.autocrlf false`);
-  // execSync(`git config --local user.email "${{ github.actor }}@users.noreply.github.com"`);
-  // execSync(`git add . && git add --renormalize .`);
-  // execSync(`git pull origin master --autostash --rebase -X ours`);
   // Создание коммита с обновленной версией
   const commitCommand = `git commit -am "${KEY_WORD} ${newVersion}"`;
-
   execSync(commitCommand);
-  // const status = execSync("git status");
-  // console.log(commitCommand.toString());
 
-  // const pullCommand = "git pull origin master --autostash --rebase -X ours";
-  // execSync(pullCommand);
-
-  // execSync("git checkout master");
-  // execSync("git fetch");
-  // execSync("rm -fr '.git/rebase-merge'");
-  // execSync("git pull origin master --rebase");asd
-
-  // execSync(`git rebase origin/master`);
   // Произведение git push
   const pushCommand = "git push";
   execSync(pushCommand);
